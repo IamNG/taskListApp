@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TaskService } from '../../services/task.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-task-form',
-  // imports: [],
-  standalone: false,
   templateUrl: './task-form.component.html',
-  styleUrl: './task-form.component.scss'
+  imports: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styleUrl: './task-form.component.scss',
 })
 export class TaskFormComponent {
   constructor(private taskService: TaskService) {}

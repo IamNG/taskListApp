@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/task.model';
+import { TaskFormComponent } from '../task-form/task-form.component';
+import { TaskDetailComponent } from '../task-detail/task-detail.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
-  // imports: [],
-  standalone: false,
   templateUrl: './task-list.component.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    TaskFormComponent   // import the standalone component
+  ],
   styleUrl: './task-list.component.scss'
 })
 export class TaskListComponent {
@@ -15,15 +25,15 @@ export class TaskListComponent {
 
   constructor(private taskService: TaskService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.refreshTasks();
   }
 
-  refreshTasks(): void {
+  refreshTasks() {
     this.tasks = this.taskService.getTasks();
   }
 
-  onSearch(): void {
+  onSearch() {
     if (this.searchTerm.trim()) {
       this.tasks = this.taskService.filterTasks(this.searchTerm);
     } else {
