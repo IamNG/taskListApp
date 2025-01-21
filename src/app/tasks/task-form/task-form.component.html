@@ -1,0 +1,29 @@
+<h3>Create Task</h3>
+<form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
+  <div>
+    <label for="title">Title:</label>
+    <input 
+      id="title"
+      name="title" 
+      type="text" 
+      ngModel 
+      required
+      #titleRef="ngModel"
+    />
+    <div *ngIf="titleRef.invalid && titleRef.touched" style="color: red;">
+      Title is required
+    </div>
+  </div>
+
+  <div>
+    <label for="description">Description:</label>
+    <textarea
+      id="description"
+      name="description" 
+      rows="3" 
+      ngModel
+    ></textarea>
+  </div>
+
+  <button type="submit" [disabled]="taskForm.invalid">Add Task</button>
+</form>

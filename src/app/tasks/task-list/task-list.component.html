@@ -1,0 +1,25 @@
+<h2>Tasks</h2>
+
+<!-- Filter search box -->
+<input 
+  type="text"
+  placeholder="Search by title..."
+  [(ngModel)]="searchTerm"
+  (input)="onSearch()" />
+
+  <app-task-form></app-task-form>
+  <hr />
+
+<!-- Tasks list -->
+<ul>
+  <li *ngFor="let task of tasks">
+    <span [class.done]="task.done">{{ task.title }}</span>
+    <button (click)="onToggleDone(task.id)">
+      {{ task.done ? 'Undo' : 'Done' }}
+    </button>
+    <button (click)="onDelete(task.id)">Delete</button>
+
+    <!-- Link to task details -->
+    <a [routerLink]="['/tasks', task.id]">Details</a>
+  </li>
+</ul>
