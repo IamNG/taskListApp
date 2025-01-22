@@ -39,7 +39,6 @@ export class TaskService {
     }
   }
 
-  // For filtering example
   filterTasks(searchTerm: string): Task[] {
     const lowerTerm = searchTerm.toLowerCase();
     return this.tasks.filter((t) =>

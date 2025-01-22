@@ -1,12 +1,17 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { TaskService } from '../../services/task.service';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../../SharedMaterial.module';
 
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
-  imports: [],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MaterialModule
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrl: './task-form.component.scss',
 })

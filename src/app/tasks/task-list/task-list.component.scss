@@ -1,3 +1,16 @@
-.done {
-    text-decoration: line-through;
-  }
+.search-card,
+.empty-card {
+  margin: 1rem 1rem;
+  padding: 12px;
+}
+
+.task-title.done {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.mat-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

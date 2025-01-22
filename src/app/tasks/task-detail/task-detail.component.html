@@ -1,14 +1,29 @@
-<div *ngIf="task; else notFound">
-    <h2>Task Details</h2>
-    <p><strong>Title:</strong> {{ task.title }}</p>
-    <p><strong>Description:</strong> {{ task.description }}</p>
-    <p><strong>Status:</strong> {{ task.done ? 'Done' : 'Not Done' }}</p>
-    <button (click)="onToggleDone()">
-      {{ task.done ? 'Undo' : 'Done' }}
-    </button>
-  </div>
-  
-  <ng-template #notFound>
-    <p>Task not found.</p>
-  </ng-template>
-  
+<ng-container *ngIf="task; else notFound">
+  <mat-card class="task-detail-card">
+    <mat-card-title>Task Details</mat-card-title>
+    <mat-card-content>
+      <p>
+        <strong>Title:</strong> {{ task.title }}
+      </p>
+      <p>
+        <strong>Description:</strong> {{ task.description }}
+      </p>
+      <p>
+        <strong>Status:</strong> {{ task.done ? 'Done' : 'Not Done' }}
+      </p>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onToggleDone()"
+      >
+        {{ task.done ? 'Undo' : 'Done' }}
+      </button>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
+<ng-template #notFound>
+  <mat-card class="not-found-card">
+    <mat-card-content>Task not found.</mat-card-content>
+  </mat-card>
+</ng-template>

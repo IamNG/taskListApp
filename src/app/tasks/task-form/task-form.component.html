@@ -1,29 +1,51 @@
-<h3>Create Task</h3>
-<form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
-  <div>
-    <label for="title">Title:</label>
-    <input 
-      id="title"
-      name="title" 
-      type="text" 
-      ngModel 
-      required
-      #titleRef="ngModel"
-    />
-    <div *ngIf="titleRef.invalid && titleRef.touched" style="color: red;">
-      Title is required
-    </div>
-  </div>
+<mat-card class="search-card">
+  <!-- कार्ड का टाइटल -->
+  <mat-card-title>Create Task</mat-card-title>
 
-  <div>
-    <label for="description">Description:</label>
-    <textarea
-      id="description"
-      name="description" 
-      rows="3" 
-      ngModel
-    ></textarea>
-  </div>
+  <!-- कार्ड की मुख्य सामग्री -->
+  <mat-card-content>
+    <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
 
-  <button type="submit" [disabled]="taskForm.invalid">Add Task</button>
-</form>
+      <!-- टाइटल इनपुट फील्ड -->
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          id="title"
+          name="title"
+          type="text"
+          ngModel
+          required
+          #titleRef="ngModel"
+          placeholder="Enter Task Title"
+        />
+        <mat-error *ngIf="titleRef.invalid && titleRef.touched">
+          Title is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- डिस्क्रिप्शन इनपुट फील्ड (टेक्स्टएरिया) -->
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          id="description"
+          name="description"
+          rows="3"
+          ngModel
+          placeholder="Enter a brief description"
+        ></textarea>
+      </mat-form-field>
+
+      <!-- सबमिट बटन -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="taskForm.invalid"
+      >
+        Add Task
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

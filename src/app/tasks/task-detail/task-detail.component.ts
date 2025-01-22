@@ -3,11 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../../SharedMaterial.module';
 
 @Component({
   selector: 'app-task-detail',
-  imports: [],
-  // standalone: false,
+  imports: [
+    CommonModule,
+    MaterialModule
+  ],
   templateUrl: './task-detail.component.html',
   styleUrl: './task-detail.component.scss'
 })

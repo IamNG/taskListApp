@@ -5,18 +5,21 @@ import { TaskFormComponent } from '../task-form/task-form.component';
 import { TaskDetailComponent } from '../task-detail/task-detail.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { MaterialModule } from '../../SharedMaterial.module';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
-  standalone: true,
   imports: [
     CommonModule,
     FormsModule,
     RouterLink,
-    TaskFormComponent   // import the standalone component
+    TaskFormComponent,
+    MaterialModule
+    // TaskDetailComponent
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrl: './task-list.component.scss'
 })
 export class TaskListComponent {

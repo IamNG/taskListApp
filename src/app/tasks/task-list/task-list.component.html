@@ -1,26 +1,55 @@
 <h2>Tasks</h2>
 
-<!-- Filter search box -->
-<input 
-  type="text"
-  placeholder="Search by title..."
-  [(ngModel)]="searchTerm"
-  (input)="onSearch()" />
+<mat-card class="search-card">
+  <mat-card-title>Search Tasks</mat-card-title>
+  <mat-card-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Search by title</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
+        placeholder="Enter task title"
+      />
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>
 
+<app-task-form></app-task-form>
 
-  <app-task-form></app-task-form>
-  <hr />
+<ng-container *ngIf="tasks && tasks.length > 0; else noTasks">
+  <mat-list>
+    <mat-list-item *ngFor="let task of tasks">
+      <div class="task-title" [class.done]="task.done">
+        {{ task.title }}
+      </div>
+      <button
+        mat-button
+        color="primary"
+        (click)="onToggleDone(task.id)"
+      >
+        {{ task.done ? 'Undo' : 'Done' }}
+      </button>
 
-<!-- Tasks list -->
-<ul>
-  <li *ngFor="let task of tasks">
-    <span [class.done]="task.done">{{ task.title }}</span>
-    <button (click)="onToggleDone(task.id)">
-      {{ task.done ? 'Undo' : 'Done' }}
-    </button>
-    <button (click)="onDelete(task.id)">Delete</button>
-
-    <!-- Link to task details -->
-    <a [routerLink]="['/tasks', task.id]">Details</a>
-  </li>
-</ul>
+      <button
+        mat-button
+        color="warn"
+        (click)="onDelete(task.id)"
+      >
+        Delete
+      </button>
+      <button
+        mat-icon-button
+        [routerLink]="['/tasks', task.id]"
+        aria-label="View details"
+      >
+        <mat-icon>info</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+</ng-container>
+<ng-template #noTasks>
+  <mat-card class="empty-card">
+    <mat-card-content>No tasks found.</mat-card-content>
+  </mat-card>
+</ng-template>
